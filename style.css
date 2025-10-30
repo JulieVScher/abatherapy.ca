@@ -655,6 +655,16 @@ iconify-icon.category-icon {
     border-width: 4px;
   }
 }
+@media (max-width: 767.98px) {
+  #about-us .col-md-6 {
+    text-align: center; /* center content inside column */
+  }
+
+  #about-us .btn {
+    display: inline-block; /* normal button size */
+    margin-top: 20px;      /* spacing above button */
+  }
+}
 
 
 
