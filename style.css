@@ -493,6 +493,41 @@ a.nav-link:hover {
   border-radius: 0.25rem;
 }
 
+/* --- Navbar & Offcanvas Fix --- */
+#primary-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* Offset page content so it doesn’t hide under the navbar */
+body {
+  padding-top: 120px;
+}
+
+/* Keep hamburger stable and visible */
+.navbar-toggler {
+  z-index: 1100;
+}
+
+/* Ensure offcanvas always overlays cleanly */
+.offcanvas {
+  z-index: 1200;
+}
+
+/* Optional smoother transitions */
+.offcanvas.show {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Prevent layout shift when toggling menu */
+.navbar-collapse, .offcanvas {
+  background-color: #fff;
+}
 
 
 /* 4.2 Slider Section
