@@ -1020,9 +1020,6 @@ Through a client-centered approach, she fosters confidence, independence, and me
   </div>
 </form>
 
-
-
-<!-- Handle Formspree submission -->
 <script>
   document.getElementById('contactForm').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -1040,12 +1037,10 @@ Through a client-centered approach, she fosters confidence, independence, and me
       });
 
       if (response.ok) {
-        // Reset the form and reCAPTCHA
         form.reset();
-        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
 
-        // Hide the form and show the thank-you message
-        form.querySelectorAll('input, textarea, .g-recaptcha, button').forEach(el => el.style.display = 'none');
+        // Hide the form fields and button, show thank-you
+        form.querySelectorAll('input, textarea, button').forEach(el => el.style.display = 'none');
         thankYou.style.display = 'block';
       } else {
         alert('Something went wrong. Please try again later.');
@@ -1057,7 +1052,7 @@ Through a client-centered approach, she fosters confidence, independence, and me
     }
   });
 </script>
-  </section>
+
 
   <footer id="footer" class="bg-gray">
     <div class="container text-center padding-medium">
