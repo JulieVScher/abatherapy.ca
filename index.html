@@ -978,80 +978,85 @@ Through a client-centered approach, she fosters confidence, independence, and me
     </div>
   </section> 
 
-  <section id="enroll">
-    <div class="container padding-medium pt-0">
+ <section id="enroll"> 
+  <div class="container padding-medium pt-0">
 
-      <div class="offset-md-3 col-md-6 text-center ">
-  <h2 class="display-4 mb-3">Contact Us</h2>
-        <p class="fw-bold">
-  Call: <a href="tel:4376006677" class="text-decoration-none text-dark">437 600 6677</a> 
-  or fill in the form to say hello
-</p>
+    <div class="offset-md-3 col-md-6 text-center">
+      <h2 class="display-4 mb-3">Contact Us</h2>
+      <p class="fw-bold">
+        Call: <a href="tel:4376006677" class="text-decoration-none text-dark">437 600 6677</a> 
+        or fill in the form to say hello
+      </p>
 
+      <p>
         Looking for <strong>ABA therapy in Toronto, Mississauga, Brampton, Vaughan, or surrounding areas?</strong>
         Our team would be happy to discuss your child or teen’s goals and support options.
       </p>
 
- <form action="https://formspree.io/f/xzzowzvw" method="post" class="contact-form row mt-5" id="contactForm">
-  <div class="col-md-12 col-sm-12 mb-4">
-    <input type="text" name="Parents" placeholder="Parents name" class="w-100 border ps-4 py-2 rounded-3" required>
-  </div>
+      <form action="https://formspree.io/f/xzzowzvw" method="post" class="contact-form row mt-5" id="contactForm">
+        
+        <!-- Honeypot field (hidden from humans) -->
+        <input type="text" name="website" style="display:none" autocomplete="off">
 
-  <div class="col-md-12 col-sm-12 mb-4">
-    <input type="email" name="Email" placeholder="Contact email" class="w-100 border ps-4 py-2 rounded-3" required>
-  </div>
+        <div class="col-md-12 col-sm-12 mb-4">
+          <input type="text" name="name" placeholder="Parent's name" class="w-100 border ps-4 py-2 rounded-3" required>
+        </div>
 
-  <div class="col-md-12 col-sm-12 mb-4">
-    <textarea name="message" placeholder="Your message" class="w-100 border ps-4 py-2 rounded-3" rows="5" required></textarea>
-  </div>
+        <div class="col-md-12 col-sm-12 mb-4">
+          <input type="email" name="email" placeholder="Contact email" class="w-100 border ps-4 py-2 rounded-3" required>
+        </div>
 
+        <div class="col-md-12 col-sm-12 mb-4">
+          <textarea name="message" placeholder="Your message" class="w-100 border ps-4 py-2 rounded-3" rows="5" required></textarea>
+        </div>
 
+        <!-- Thank-you message (hidden until success) -->
+        <div class="sent-message" style="display: none;">
+          Thank you for contacting ABA in the GTA. We will get back to you as soon as possible.
+        </div>
 
+        <!-- Submit button -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mt-3" id="sendMessageBtn">Submit</button>
+        </div>
 
+      </form>
 
-  <!-- Thank-you message (hidden until success) -->
-  <div class="sent-message" style="display: none;">
-    Thank you for contacting ABA in the GTA. We will get back to you as soon as possible.
-  </div>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+          event.preventDefault();
 
-  <!-- Submit button -->
-  <div class="text-center">
-    <button type="submit" class="btn btn-primary mt-3" id="sendMessageBtn">Submit</button>
-  </div>
-</form>
+          const form = event.target;
+          const submitButton = document.getElementById('sendMessageBtn');
+          const thankYou = document.querySelector('.sent-message');
+          submitButton.disabled = true;
 
-<script>
-  document.getElementById('contactForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
+          try {
+            const response = await fetch(form.action, {
+              method: form.method,
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            });
 
-    const form = event.target;
-    const submitButton = document.getElementById('sendMessageBtn');
-    const thankYou = document.querySelector('.sent-message');
-    submitButton.disabled = true;
+            if (response.ok) {
+              form.reset();
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
+              // Hide the form fields and button
+              form.querySelectorAll('input, textarea, button').forEach(el => el.style.display = 'none');
 
-      if (response.ok) {
-        form.reset();
+              // Show thank-you message
+              thankYou.style.display = 'block';
+            } else {
+              alert('Something went wrong. Please try again later.');
+              submitButton.disabled = false;
+            }
+          } catch (error) {
+            alert('Network error. Please try again later.');
+            submitButton.disabled = false;
+          }
+        });
+      </script>
 
-        // Hide the form fields and button, show thank-you
-        form.querySelectorAll('input, textarea, button').forEach(el => el.style.display = 'none');
-        thankYou.style.display = 'block';
-      } else {
-        alert('Something went wrong. Please try again later.');
-        submitButton.disabled = false;
-      }
-    } catch (error) {
-      alert('Network error. Please try again later.');
-      submitButton.disabled = false;
-    }
-  });
-</script>
 
 
   <footer id="footer" class="bg-gray">
